@@ -1,0 +1,20 @@
+default: &default
+  adapter: mysql2
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 30000
+  encoding: utf8
+  host: <%= ENV.fetch('MYSQL_HOST', 'localhost') %>
+  username: <%= ENV.fetch("MYSQL_USERNAME", "root") %>
+  password: <%= ENV.fetch("MYSQL_PASSWORD", "") %>
+
+development:
+  <<: *default
+  database: escargot_development
+
+test:
+  <<: *default
+  database: escargot_test
+
+production:
+  <<: *default
+  database: escargot_production
